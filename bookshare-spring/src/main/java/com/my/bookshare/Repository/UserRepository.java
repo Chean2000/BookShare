@@ -10,6 +10,6 @@ import com.my.bookshare.entity.UserEntity;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, String> {
 
-	
+	public  boolean existsByEmailAndPassword(String email, String password);
 
 }

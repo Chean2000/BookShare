@@ -10,7 +10,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebMvc
 @SpringBootApplication
 public class BookshareApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(BookshareApplication.class, args);
 	}
@@ -24,5 +23,4 @@ public class BookshareApplication {
 			}
 		};
 	}
-
 }

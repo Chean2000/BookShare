@@ -1,7 +1,6 @@
 package com.my.bookshare.dto;
 
-import com.my.bookshare.entity.UserEntity;
-
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,8 +8,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SignInResponseDTO {
-	private String token;
-	private int exprTime;
-	private UserEntity user;
+public class SignInDTO {
+	@NotBlank
+	private String email;
+	@NotBlank
+	private String password;
 }

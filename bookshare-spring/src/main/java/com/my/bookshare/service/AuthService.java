@@ -5,14 +5,18 @@ import org.springframework.stereotype.Service;
 
 import com.my.bookshare.Repository.UserRepository;
 import com.my.bookshare.dto.ResponseDTO;
+import com.my.bookshare.dto.SignInDTO;
+import com.my.bookshare.dto.SignInResponseDTO;
 import com.my.bookshare.dto.SignUpDTO;
 import com.my.bookshare.entity.UserEntity;
+import com.my.bookshare.security.TokenProvider;
 
 
 @Service
 public class AuthService {
 	
 	@Autowired UserRepository userRepository;
+	@Autowired TokenProvider tokenProvider;
 	
 	public ResponseDTO<?> signUp(SignUpDTO dto){
 		String email = (dto).getEmail();
@@ -24,7 +28,7 @@ public class AuthService {
 			if(userRepository.existsById(email)) {
 				return ResponseDTO.setFailed("Existed Email.");
 			}
-		}catch(Exception e){
+		}catch(Exception error){
 			return ResponseDTO.setFailed("DB Error");
 		}
 		
@@ -39,12 +43,42 @@ public class AuthService {
 		// UserRepository를 이용해서 데이터베이스에 Entity 저장
 		try{
 			userRepository.save(userEntity);
-		}catch(Exception e) {
+		}catch(Exception error) {
 			return ResponseDTO.setFailed("DB Error");
 		}
 		
 		// 성공시 success response 반환
 		return ResponseDTO.setSuccess("Sign up Success", null);
+		
+	}
+	
+	public ResponseDTO<SignInResponseDTO> signIn(SignInDTO dto){
+		String email = dto.getEmail();
+		String password = dto.getPassword();
+		
+		try {
+			boolean existed = userRepository.existsByEmailAndPassword(email, password);
+			if(!existed) return ResponseDTO.setFailed("Sign In Information is not Matched");
+		}catch(Exception error){
+			return ResponseDTO.setFailed("Database Error");
+		}
+		
+		UserEntity userEntity =  null;
+		
+		try {
+			userEntity = userRepository.findById(email).get();
+			userEntity.setPassword("");
+		}catch(Exception error){
+			return ResponseDTO.setFailed("Database Error");
+		}
+		
+		
+		String token = tokenProvider.create(email);
+		int exprTime = 3600000;
+		
+		SignInResponseDTO signInResponseDTO = new SignInResponseDTO(token, exprTime, userEntity);
+		return ResponseDTO.setSuccess("Sign in Success", signInResponseDTO);
+		
 		
 	}
 	
