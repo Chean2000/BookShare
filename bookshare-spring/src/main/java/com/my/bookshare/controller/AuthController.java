@@ -18,7 +18,7 @@ import com.my.bookshare.service.AuthService;
 public class AuthController {
 	
 	@Autowired AuthService authService;
-	
+
 	@PostMapping("/signUp")
 	public ResponseDTO<?> signUp(@RequestBody SignUpDTO requestBody){
 		//System.out.println("Controller "+requestBody.toString());

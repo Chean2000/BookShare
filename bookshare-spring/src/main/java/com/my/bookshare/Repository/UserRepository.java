@@ -11,5 +11,7 @@ import com.my.bookshare.entity.UserEntity;
 public interface UserRepository extends JpaRepository<UserEntity, String> {
 
 	public  boolean existsByEmailAndPassword(String email, String password);
+	
+	public UserEntity findByEmail(String email);
 
 }
