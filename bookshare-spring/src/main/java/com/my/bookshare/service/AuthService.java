@@ -65,19 +65,21 @@ public class AuthService {
 		String password = dto.getPassword();
 		UserEntity userEntity =  null;
 		
+		
+		
 		try {
 			userEntity = userRepository.findByEmail(email);
 			// 잘못된 이메일
 			if(userEntity == null) return ResponseDTO.setFailed("Sign In Failed");
 			// 잘못된 패스워드
-			if(passwordEncoder.matches(password, userEntity.getEmail()))
+			if(!passwordEncoder.matches(password, userEntity.getPassword()))
 				return ResponseDTO.setFailed("Sign In Failed");
 		}catch(Exception error){
 			return ResponseDTO.setFailed("Database Error");
 		}
 		
 		userEntity.setPassword("");
-		
+
 		String token = tokenProvider.create(email);
 		int exprTime = 3600000;
 		
