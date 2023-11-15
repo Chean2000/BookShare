@@ -7,8 +7,10 @@
 * 개인
 ## ⚙️개발활경
 * Java 17
-* **Framework**:Springboot(3.1.2), React(0.1.0)
-* **Database**:MySQL
+* Springboot(3.1.2)
+* React(0.1.0)
+* Typescript 
+* MySQL
 
 ## 😊느낀점
 변수와 함수에 타입을 설정해 봄으로써 자바스크립트와 타입스크립트와의 문법 차이점을 배울 수 있었고 React의 기본 구조에 대해 알 수 있었습니다. 
