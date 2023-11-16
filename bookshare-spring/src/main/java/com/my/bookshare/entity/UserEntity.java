@@ -26,7 +26,7 @@ public class UserEntity {
 	private String name;  
 	private String phone; 
 	private String img;
-	private String id;
+	private int id;
 	
 	public UserEntity(SignUpDTO dto) {
 		this.email = dto.getEmail();

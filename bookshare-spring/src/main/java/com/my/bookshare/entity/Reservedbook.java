@@ -18,6 +18,6 @@ public class Reservedbook {
 	
 	@Id
 	private String reserveddate; 
-	private String bookid; 
-	private String id;
+	private int bookid; 
+	private int id;
 }

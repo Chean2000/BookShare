@@ -21,6 +21,6 @@ public class InteresetedbookEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String interestedid;
-	private String id; 
-	private String bookid;	
+	private int id; 
+	private int bookid;	
 }

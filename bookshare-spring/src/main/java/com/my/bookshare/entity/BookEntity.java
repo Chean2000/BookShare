@@ -19,12 +19,14 @@ import lombok.NoArgsConstructor;
 public class BookEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String bookid; 
+	private int bookid; 
 	private String title; 
 	private String author; 
 	private String publisher; 
 	private String location; 
 	private String types; 
 	private String bookimg;
+	private int id;
+	
 	
 }

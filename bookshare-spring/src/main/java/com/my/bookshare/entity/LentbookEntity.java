@@ -21,6 +21,6 @@ public class LentbookEntity {
 	private String returndate; 
 	private String extenddate; 
 	private String email; 
-	private String bookid; 
-	private String id;
+	private int bookid; 
+	private int id;
 }
